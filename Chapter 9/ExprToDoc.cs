@@ -18,7 +18,7 @@ sealed class ExprToDoc : IExprVisitor<Doc>
 
     public Doc Visit(Id id) => Text(id.name);
     public Doc Visit(Paren paren) =>
-        Group(Indent(lparen + OptBreak + paren.expr.Accept(this)) + OptBreak + rparen);
+        Group(Indent(lparen + OptBreak + paren.expr.Accept(this)) + rparen);
 
     private Doc BinOp(Expr left, Doc op, Expr right) =>
         Group(Indent(Group(left.Accept(this) + Space + op) + Space + right.Accept(this)));

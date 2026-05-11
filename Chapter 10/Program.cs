@@ -1,6 +1,6 @@
 ﻿// Fabulous Adventures In Data Structures and Algorithms
 // Chapter 10
-// Unification
+// Unification and Anti-unification
 
 // Comparing Unification Algorithms in First-Order Theorem Proving
 // Krystof Hoder and Andrei Voronkov
@@ -8,9 +8,11 @@
 Sample1();
 Sample2();
 Sample3();
+Sample4();
 
 void Sample1()
 {
+    Console.WriteLine("\nSample 1\n---");
     Symbol ImStack(BinTerm left, BinTerm right) =>
         new("ImStack", left, right);
 
@@ -29,6 +31,7 @@ void Sample1()
 }
 void Sample2()
 {
+    Console.WriteLine("\nSample 2\n---");
     Symbol Blah(BinTerm left, BinTerm right) =>
         new("Blah", left, right);
 
@@ -46,6 +49,7 @@ void Sample2()
 }
 void Sample3()
 {
+    Console.WriteLine("\nSample 3\n---");
     var list = new Constant("list");
     var dble = new Constant("double");
     var func = new Constant("Func");
@@ -66,4 +70,20 @@ void Sample3()
     Console.WriteLine($"U -> {U.Substitute(subst)}");
     Console.WriteLine($"V -> {V.Substitute(subst)}");
     Console.WriteLine($"X -> {X.Substitute(subst)}");
+}
+
+void Sample4()
+{
+    Console.WriteLine("\nSample 4\n---");
+    Symbol Mult(BinTerm t1, BinTerm t2) => new("Mult", t1, t2);
+    Symbol Add(BinTerm t1, BinTerm t2) => new("Add", t1, t2);
+    Symbol Div(BinTerm t1, BinTerm t2) => new("Div", t1, t2);
+    Constant one = new(1), two = new(2), five = new(5), six = new(6);
+    BinTerm term1 = Mult(Add(one, two), Div(Add(one, two), five));
+    BinTerm term2 = Mult(six, Div(six, five));
+    var au = term1.AntiUnify(term2);
+    Console.WriteLine(au.Result);
+    Console.WriteLine(au.Result.Substitute(au.Sub1));
+    Console.WriteLine(au.Result.Substitute(au.Sub2));
+
 }

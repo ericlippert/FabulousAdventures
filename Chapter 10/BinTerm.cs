@@ -1,6 +1,6 @@
 ﻿// Fabulous Adventures In Data Structures and Algorithms
 // Chapter 10
-// Unification
+// Unification and Anti-unification
 //
 // Robinson's First Order Unification Algorithm
 // See
@@ -88,6 +88,9 @@ abstract record class BinTerm
             return Unify(s1.Left, s2.Left, subst) && Unify(s1.Right, s2.Right, subst);
         return false;
     }
+
+    public AntiUnification AntiUnify(BinTerm term2) =>
+    AntiUnification.AntiUnify(this, term2);
 }
 
 sealed record class Hole(string Name) : BinTerm

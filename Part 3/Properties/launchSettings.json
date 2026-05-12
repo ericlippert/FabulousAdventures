@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Part3": {
+      "commandName": "Project",
+      "workingDirectory": "."
+    }
+  }
+}
